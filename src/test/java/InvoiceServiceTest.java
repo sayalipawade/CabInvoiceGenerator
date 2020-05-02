@@ -1,4 +1,5 @@
 import com.cabservicegenerator.InvoiceGenerator;
+import com.cabservicegenerator.InvoiceSummary;
 import com.cabservicegenerator.Ride;
 import org.junit.Assert;
 import org.junit.Test;
@@ -22,18 +23,32 @@ public class InvoiceServiceTest {
         double distance=0.1;
         int time=1;
         double fare=generator.calculateFare(distance,time);
-        Assert.assertEquals(2.0,fare,0.0);
+        Assert.assertEquals(5.0,fare,0.0);
     }
 
-    /** Given multiple rides should return total fare */
+    /** Given multiple rides should return invoice summary*/
     @Test
-    public void givenMultipleRides_ShouldReturnTotalFare(){
-        InvoiceGenerator generator=new InvoiceGenerator();
-        Ride[] rides={  new Ride(2.0,5),
-                        new Ride(0.1,1)
-                    };
-        double fare=generator.calculateFare(rides);
-        Assert.assertEquals(30,fare,0.0);
+    public void givenMultipleRides_ShouldReturnInvoiceSummary() {
+        InvoiceGenerator generator = new InvoiceGenerator();
+        Ride[] rides = {  new Ride(2.0, 5),
+                          new Ride(0.1, 1)
+                        };
+        InvoiceSummary invoiceSummary = generator.calculateFare(rides);
+        InvoiceSummary expectedInvoiceSummary = new InvoiceSummary(2, 30);
+        Assert.assertEquals(invoiceSummary, expectedInvoiceSummary);
     }
 
+    /** Given user ID should return invoice summary */
+    @Test
+    public void givenUserId_ShouldReturnInvoiceSummary() {
+        String userId="sayali123";
+        InvoiceGenerator generator = new InvoiceGenerator();
+        Ride[] rides = { new Ride(2.0, 5),
+                new Ride(0.1, 1)
+        };
+        generator.addRides(userId,rides);
+        InvoiceSummary invoiceSummary=generator.getInvoiceSummary(userId);
+        InvoiceSummary expectedInvoiceSummary = new InvoiceSummary(2, 30);
+        Assert.assertEquals(invoiceSummary, expectedInvoiceSummary);
+    }
 }
