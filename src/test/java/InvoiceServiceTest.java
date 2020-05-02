@@ -5,7 +5,7 @@ import org.junit.Test;
 
 public class InvoiceServiceTest {
 
-    /*TC1:Given Distance and time should return total fare*/
+    /**Given Distance and time should return total fare*/
     @Test
     public void givenDistanceAndTime_ShouldReturnTotalFare() {
         InvoiceGenerator generator=new InvoiceGenerator();
@@ -15,17 +15,17 @@ public class InvoiceServiceTest {
         Assert.assertEquals(25,fare,0.0);
     }
 
-    /*TC1.2:Given Distance and Time should return minimumfare*/
+    /** Given Distance and Time should return minimumfare*/
     @Test
     public void givenDistanceAndTime_ShouldReturnMinimumFare(){
         InvoiceGenerator generator=new InvoiceGenerator();
         double distance=0.1;
         int time=1;
         double fare=generator.calculateFare(distance,time);
-        Assert.assertEquals(5.0,fare,0.0);
+        Assert.assertEquals(2.0,fare,0.0);
     }
 
-    /*TC2:Given multiple rides should return total fare */
+    /** Given multiple rides should return total fare */
     @Test
     public void givenMultipleRides_ShouldReturnTotalFare(){
         InvoiceGenerator generator=new InvoiceGenerator();
