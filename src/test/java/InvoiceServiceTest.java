@@ -1,11 +1,12 @@
 import com.cabservicegenerator.InvoiceGenerator;
+import com.cabservicegenerator.InvoiceSummary;
 import com.cabservicegenerator.Ride;
 import org.junit.Assert;
 import org.junit.Test;
 
 public class InvoiceServiceTest {
 
-    /**Given Distance and time should return total fare*/
+    /** Given distance and time should return total fare*/
     @Test
     public void givenDistanceAndTime_ShouldReturnTotalFare() {
         InvoiceGenerator generator=new InvoiceGenerator();
@@ -15,25 +16,27 @@ public class InvoiceServiceTest {
         Assert.assertEquals(25,fare,0.0);
     }
 
-    /** Given Distance and Time should return minimumfare*/
+    /** Given distance and time if total fare is less than minimum fare should return minimum fare */
     @Test
     public void givenDistanceAndTime_ShouldReturnMinimumFare(){
         InvoiceGenerator generator=new InvoiceGenerator();
-        double distance=0.1;
+        double distance=0.3;
         int time=1;
         double fare=generator.calculateFare(distance,time);
-        Assert.assertEquals(2.0,fare,0.0);
+        Assert.assertEquals(5.0,fare,0.0);
     }
 
     /** Given multiple rides should return total fare */
     @Test
-    public void givenMultipleRides_ShouldReturnTotalFare(){
-        InvoiceGenerator generator=new InvoiceGenerator();
-        Ride[] rides={  new Ride(2.0,5),
-                        new Ride(0.1,1)
-                    };
-        double fare=generator.calculateFare(rides);
-        Assert.assertEquals(30,fare,0.0);
+    public void givenMultipleRides_ShouldReturnInvoiceSummary(){
+        InvoiceGenerator generator = new InvoiceGenerator();
+        Ride[] rides = {
+                            new Ride(2.0,5),
+                            new Ride(0.1,1)
+                        };
+        InvoiceSummary invoiceSummary = generator.calculateFare(rides);
+        InvoiceSummary expectedInvoiceSummary = new InvoiceSummary(2,30);
+        Assert.assertEquals(invoiceSummary,expectedInvoiceSummary);
     }
 
 }
