@@ -2,10 +2,12 @@ package com.cabservicegenerator;
 
 public class InvoiceSummary {
 
+    /**Variables*/
     private final double totalFare;
     private final int numberOfRides;
     private final double averageFare;
 
+    /**Parameterized constructor*/
     public InvoiceSummary(int numberOfRides, double totalFare) {
         this.numberOfRides = numberOfRides;
         this.totalFare = totalFare;

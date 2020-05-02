@@ -26,7 +26,7 @@ public class InvoiceServiceTest {
         Assert.assertEquals(5.0,fare,0.0);
     }
 
-    /** Given multiple rides should return total fare */
+    /** Given multiple rides should return invoice summary*/
     @Test
     public void givenMultipleRides_ShouldReturnInvoiceSummary(){
         InvoiceGenerator generator = new InvoiceGenerator();
@@ -39,4 +39,17 @@ public class InvoiceServiceTest {
         Assert.assertEquals(invoiceSummary,expectedInvoiceSummary);
     }
 
+    /** Given user ID should return invoice summary */
+    @Test
+    public void givenUserId_ShouldReturnInvoiceSummary() {
+        String userId="sayali123";
+        InvoiceGenerator generator = new InvoiceGenerator();
+        Ride[] rides = { new Ride(2.0, 5),
+                new Ride(0.1, 1)
+        };
+        generator.addRides(userId,rides);
+        InvoiceSummary invoiceSummary=generator.getInvoiceSummary(userId);
+        InvoiceSummary expectedInvoiceSummary = new InvoiceSummary(2, 30);
+        Assert.assertEquals(invoiceSummary, expectedInvoiceSummary);
+    }
 }
