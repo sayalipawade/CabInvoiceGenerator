@@ -2,12 +2,21 @@ package com.cabservicegenerator;
 
 public class Ride {
 
-    /**variables*/
+    /**
+     * Variables
+     */
     public final double distance;
     public final int time;
+    public final CabRide cabRide;
 
-    /**parameterized constructor*/
-    public Ride(double distance, int time) {
+    /**
+     * Parameterized constructor
+     * @param ride
+     * @param distance
+     * @param time
+     */
+    public Ride(CabRide ride,double distance, int time) {
+        this.cabRide=ride;
         this.distance = distance;
         this.time = time;
     }

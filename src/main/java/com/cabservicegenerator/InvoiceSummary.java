@@ -2,18 +2,27 @@ package com.cabservicegenerator;
 
 public class InvoiceSummary {
 
-    /**Variables*/
+    /**
+     * Variables
+     */
     private final double totalFare;
     private final int numberOfRides;
     private final double averageFare;
 
-    /**Parameterized constructor*/
+    /**
+     * Parameterized constructor
+     */
     public InvoiceSummary(int numberOfRides, double totalFare) {
         this.numberOfRides = numberOfRides;
         this.totalFare = totalFare;
         this.averageFare = this.totalFare/this.numberOfRides;
     }
 
+    /**
+     * Object equality method
+     * @param object
+     * @return
+     */
     @Override
     public boolean equals(Object object) {
         if (this == object)
